@@ -10,9 +10,7 @@ A Flutter mobile app for tracking delivery orders in real time &mdash;<br>driver
 
 <table>
   <tr>
-    <td align="center" width="33%"><img src="assets/screenshots/01_onboarding.png" width="230" alt="Onboarding"><br><sub><b>Onboarding</b></sub></td>
-    <td align="center" width="33%"><img src="assets/screenshots/12_home_incoming_orders.png" width="230" alt="Incoming requests"><br><sub><b>Incoming requests</b></sub></td>
-    <td align="center" width="33%"><img src="assets/screenshots/15_navigation_to_pickup.png" width="230" alt="Route to pickup"><br><sub><b>Route to pickup</b></sub></td>
+    <td align="center"><img src="assets/demo/rider-delivery-flow.gif" width="250" alt="Rider delivery flow"><br><sub><b>Incoming request → accept → pickup → route to customer → delivered</b></sub><br><sub><i>Walkthrough of screens from the project's Figma design file</i></sub></td>
   </tr>
 </table>
 
@@ -89,15 +87,25 @@ maintained independently going forward under my own account, with permission fro
 
 The app follows **Clean Architecture** with a **feature-first** folder structure:
 
+### Project Structure
+
 ```text
-lib/
-├── app/             # Routing, app bootstrap
-├── core/            # Shared infrastructure: DI, networking, errors,
-│                    # theme, widgets, services
-└── features/
-    ├── auth/
-    ├── location_tracking/
-    └── on_bording/
+Tracking_app/
+├── android/ · ios/ · web/    # Platform projects
+├── linux/ · macos/ · windows/
+├── assets/
+│   ├── animations/           # Lottie delivery animation
+│   ├── demo/                 # Animated flow preview used in this README
+│   ├── images/               # App images
+│   ├── screenshots/          # UI screens from the Figma design file
+│   └── translations/         # Arabic / English localization
+├── lib/
+│   ├── app/                  # Routing and app bootstrap
+│   ├── core/                 # DI, networking, errors, theme,
+│   │                         # services, shared widgets
+│   └── features/             # auth · location_tracking · on_bording
+├── test/                     # Unit and widget tests (27 files)
+└── pubspec.yaml
 ```
 
 Each feature is split into `api` / `data` / `domain` / `presentation` layers, with BLoC/Cubit
@@ -108,15 +116,27 @@ it all together via `get_it` + `injectable`.
 
 ## Application Screenshots
 
-A selection of the main screens, taken from the project's Figma design file. They follow the rider's journey: accept a job, collect the order, and complete the delivery.
+A selection of the main screens, taken from the project's Figma design file.
 
-### Collecting the Order
+### Getting Started
 
-Accepting a request and progressing it through pickup.
+Onboarding and picking up an incoming delivery request.
 
 <table>
   <tr>
+    <td align="center" valign="top" width="33%"><img src="assets/screenshots/01_onboarding.png" alt="Onboarding" width="215"><br><sub><b>Onboarding</b></sub></td>
+    <td align="center" valign="top" width="33%"><img src="assets/screenshots/12_home_incoming_orders.png" alt="Incoming requests" width="215"><br><sub><b>Incoming requests</b></sub></td>
     <td align="center" valign="top" width="33%"><img src="assets/screenshots/13_order_details_accepted.png" alt="Order accepted" width="215"><br><sub><b>Order accepted</b></sub></td>
+  </tr>
+</table>
+
+### Collecting the Order
+
+Navigating to the store and confirming pickup.
+
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%"><img src="assets/screenshots/15_navigation_to_pickup.png" alt="Route to pickup" width="215"><br><sub><b>Route to pickup</b></sub></td>
     <td align="center" valign="top" width="33%"><img src="assets/screenshots/16_order_details_picked_up.png" alt="Order picked up" width="215"><br><sub><b>Order picked up</b></sub></td>
     <td align="center" valign="top" width="33%"><img src="assets/screenshots/18_order_details_out_for_delivery.png" alt="Out for delivery" width="215"><br><sub><b>Out for delivery</b></sub></td>
   </tr>
